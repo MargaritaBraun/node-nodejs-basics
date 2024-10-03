@@ -9,17 +9,19 @@ const create = async () => {
   const myError = new Error("FS operation failed");
 
   fs.access(fileFresh, (err) => {
-    if (!err) {
-        console.error("FS operation failed");
-        //throw myError;
-    } else {
+    if (err) {
+      //throw myError;
       fs.writeFile(fileFresh, "I am fresh and young", "utf-8", (err) => {
         if (err) {
-          throw err;
+          //throw err;
+          console.error("FS operation failed");
         } else {
           console.log("Created fresh.txt");
         }
       });
+    } else {
+      console.error("FS operation failed");
+      //throw myError;
     }
   });
   // const statFresg = fs.stat(fileFresh)
